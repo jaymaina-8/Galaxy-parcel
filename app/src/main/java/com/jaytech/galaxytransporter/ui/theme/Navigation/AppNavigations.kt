@@ -15,8 +15,9 @@ import com.jaytech.galaxytransporter.ui.theme.data.Parcel
 import com.jaytech.galaxytransporter.ui.theme.screens.Admin.RegisterScreen
 import com.jaytech.galaxytransporter.ui.theme.screens.Detail.DetailScreen
 import com.jaytech.galaxytransporter.ui.theme.screens.Parcel.ParcelForm
+import com.jaytech.galaxytransporter.ui.theme.screens.Recipt.ReceiptScreen
 import com.jaytech.galaxytransporter.ui.theme.screens.SplashScreen
-import com.jaytech.galaxytransporter.ui.theme.screens.receipt.ReceiptScreen
+
 
 
 @Composable

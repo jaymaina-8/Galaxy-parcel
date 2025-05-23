@@ -55,7 +55,6 @@ fun ParcelForm(
     var goodsTypeExpanded by remember { mutableStateOf(false) }
     var destinationExpanded by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
-
     Scaffold(
         topBar = {
             TopAppBar(
