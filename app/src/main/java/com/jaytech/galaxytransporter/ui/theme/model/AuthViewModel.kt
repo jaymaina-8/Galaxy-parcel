@@ -1,53 +1,40 @@
 package com.jaytech.galaxytransporter.ui.theme.model
 
-
-import android.app.Application
-import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
-class AuthViewModel(application: Application) : AndroidViewModel(application) {
+class AuthViewModel : ViewModel() {
+    private val auth = FirebaseAuth.getInstance()
 
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    fun loginOrRegister(
+        email: String,
+        password: String,
+        onSuccess: () -> Unit,
+        onError: (String) -> Unit
+    ) {
+        if (email.isBlank() || password.isBlank()) {
+            onError("Email and password must not be empty")
+            return
+        }
 
-    private val _authState = MutableStateFlow<AuthResultState>(AuthResultState.Idle)
-    val authState: StateFlow<AuthResultState> = _authState
-
-    fun loginOrRegister(email: String, password: String) {
-        _authState.value = AuthResultState.Loading
-
-        // First, try sign in
         auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { loginTask ->
-                if (loginTask.isSuccessful) {
-                    _authState.value = AuthResultState.Success("Login successful")
-                } else {
-                    // Try registration if login fails
-                    auth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { registerTask ->
-                            if (registerTask.isSuccessful) {
-                                _authState.value = AuthResultState.Success("Registered successfully")
-                            } else {
-                                _authState.value = AuthResultState.Failure(registerTask.exception?.message ?: "Auth failed")
-                            }
-                        }
-                }
+            .addOnSuccessListener {
+                Log.d("AuthViewModel", "Login successful")
+                onSuccess()
+            }
+            .addOnFailureListener { loginError ->
+                Log.d("AuthViewModel", "Login failed, trying to register: ${loginError.message}")
+                // Try to register the user if login fails
+                auth.createUserWithEmailAndPassword(email, password)
+                    .addOnSuccessListener {
+                        Log.d("AuthViewModel", "Registration successful")
+                        onSuccess()
+                    }
+                    .addOnFailureListener { registerError ->
+                        Log.e("AuthViewModel", "Registration failed: ${registerError.message}")
+                        onError(registerError.message ?: "Authentication failed")
+                    }
             }
     }
-
-    fun logout() {
-        auth.signOut()
-        _authState.value = AuthResultState.Idle
-    }
-}
-
-sealed class AuthResultState {
-    object Idle : AuthResultState()
-    object Loading : AuthResultState()
-    data class Success(val message: String) : AuthResultState()
-    data class Failure(val error: String) : AuthResultState()
 }

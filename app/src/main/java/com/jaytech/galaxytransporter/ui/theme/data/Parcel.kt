@@ -15,7 +15,7 @@ data class Parcel(
     val receiverPhone: String = "",
     val destination: String = "",
     val price: String = "",
-    val timestamp: Long? = null
-
+    val timestamp: Long? = null,
+    val status: String = ""
 
 ) : Parcelable
