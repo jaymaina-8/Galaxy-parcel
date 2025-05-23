@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "20905872378",
+    "project_id": "galaxy-transporter",
+    "storage_bucket": "galaxy-transporter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20905872378:android:d5718e94c75ab184657243",
+        "android_client_info": {
+          "package_name": "com.jaytech.galaxytransporter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF_aatv57Ys_FEj6G9bWGqLrhZXzrE7MU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
