@@ -1,5 +1,6 @@
 package com.jaytech.galaxytransporter.ui.theme.screens.Parcel
 
+import Parcel
 import androidx.compose.foundation.text.KeyboardOptions
 
 import android.widget.Toast
@@ -19,7 +20,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.jaytech.galaxytransporter.ui.theme.data.Parcel
 import com.jaytech.galaxytransporter.ui.theme.model.ParcelViewModel
 import com.jaytech.galaxytransporter.ui.theme.Navigation.ROUTE_RECEIPT
 import java.util.*
@@ -55,7 +55,6 @@ fun ParcelForm(
     var goodsTypeExpanded by remember { mutableStateOf(false) }
     var destinationExpanded by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -82,7 +81,7 @@ fun ParcelForm(
         containerColor = MaterialTheme.colorScheme.primaryContainer // light background for body
     ) { padding ->
 
-    Column(
+        Column(
             modifier = Modifier
                 .padding(padding)
                 .padding(16.dp)
@@ -217,7 +216,8 @@ fun ParcelForm(
                         goodsType.isBlank() || quantity.isBlank() ||
                         value.isBlank() || destination.isBlank() || price.isBlank()
                     ) {
-                        Toast.makeText(context, "Please fill all fields.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Please fill all fields.", Toast.LENGTH_SHORT)
+                            .show()
                         return@Button
                     }
 
@@ -239,7 +239,12 @@ fun ParcelForm(
                     viewModel.submitParcel(
                         parcel = parcel,
                         onSuccess = {
-                            navController.navigate(ROUTE_RECEIPT)
+                            // Pass the parcel to the next screen
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                "parcel",
+                                parcel
+                            )
+                            navController.navigate("receipt")
                         },
                         onFailure = {
                             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
@@ -262,6 +267,7 @@ fun ParcelForm(
         }
     }
 }
+
 
 
 //

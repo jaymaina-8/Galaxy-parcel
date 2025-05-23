@@ -1,5 +1,6 @@
 package com.jaytech.galaxytransporter.ui.theme.screens.Detail
 
+import Parcel
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -13,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jaytech.galaxytransporter.ui.theme.Navigation.ROUTE_PARCELFORM
-import com.jaytech.galaxytransporter.ui.theme.data.Parcel
 import com.jaytech.galaxytransporter.ui.theme.formatDate
 
 @OptIn(ExperimentalMaterial3Api::class)

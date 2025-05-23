@@ -1,5 +1,6 @@
 package com.jaytech.galaxytransporter.ui.theme.Navigation
 
+import Parcel
 import android.window.SplashScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -11,12 +12,12 @@ import com.jaytech.galaxytransporter.ui.theme.model.ParcelViewModel
 import com.jaytech.galaxytransporter.ui.theme.screens.history.HistoryScreen
 import com.jaytech.galaxytransporter.ui.theme.screens.home.HomeScreen
 import androidx.navigation.compose.NavHost
-import com.jaytech.galaxytransporter.ui.theme.data.Parcel
 import com.jaytech.galaxytransporter.ui.theme.screens.Admin.RegisterScreen
 import com.jaytech.galaxytransporter.ui.theme.screens.Detail.DetailScreen
 import com.jaytech.galaxytransporter.ui.theme.screens.Parcel.ParcelForm
+import com.jaytech.galaxytransporter.ui.theme.screens.Recipt.ReceiptScreen
 import com.jaytech.galaxytransporter.ui.theme.screens.SplashScreen
-import com.jaytech.galaxytransporter.ui.theme.screens.receipt.ReceiptScreen
+
 
 
 @Composable

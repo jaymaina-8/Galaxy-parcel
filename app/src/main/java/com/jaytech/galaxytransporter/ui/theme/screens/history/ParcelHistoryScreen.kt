@@ -2,6 +2,7 @@ package com.jaytech.galaxytransporter.ui.theme.screens.history
 
 
 
+import Parcel
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,7 +18,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.jaytech.galaxytransporter.ui.theme.Navigation.ROUTE_DETAIL
 import com.jaytech.galaxytransporter.ui.theme.Navigation.ROUTE_HOME
 import com.jaytech.galaxytransporter.ui.theme.Navigation.ROUTE_PARCELFORM
-import com.jaytech.galaxytransporter.ui.theme.data.Parcel
 import com.jaytech.galaxytransporter.ui.theme.formatDate
 import com.jaytech.galaxytransporter.ui.theme.model.ParcelViewModel
 import com.jaytech.galaxytransporter.ui.theme.screens.custorbars.CustomBottomBar
